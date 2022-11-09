@@ -1,8 +1,14 @@
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 from .models import CustomUser
+from django import forms
+
 
 class CustomUserCreationForm(UserCreationForm):
+    age = forms.IntegerField()
+    favorite_phish_song = forms.CharField(label = 'Favorite Phish Song')
+    favorite_fish = forms.CharField(label = 'Favorite Fish')
+    
     class Meta(UserCreationForm):
         model = CustomUser
         fields = (
@@ -14,6 +20,10 @@ class CustomUserCreationForm(UserCreationForm):
             )
 
 class CustomUserChangeForm(UserChangeForm):
+    age = forms.IntegerField()
+    favorite_phish_song = forms.CharField(label = 'Favorite Phish Song')
+    favorite_fish = forms.CharField(label = 'Favorite Fish')
+    
     class Meta:
         model = CustomUser
         fields = (
@@ -23,5 +33,3 @@ class CustomUserChangeForm(UserChangeForm):
             'favorite_phish_song',
             'favorite_fish',
             )
-
-
