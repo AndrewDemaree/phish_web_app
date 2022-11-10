@@ -1,0 +1,15 @@
+<!-- templates/about.html -->
+{% extends "base.html" %}
+{% block title %}About{% endblock title %}
+{% block content %}
+{% if user.is_authenticated %}
+Hi {{ user.username }}!
+{% else %}
+<p>You are not logged in</p>
+{% endif %}
+<br><br><br>
+Welcome to Something Fishy!
+
+
+
+{% endblock content %}
