@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     #Local
+    'music.apps.MusicConfig',
     'accounts.apps.AccountsConfig',
     'pages.apps.PagesConfig',
 ]

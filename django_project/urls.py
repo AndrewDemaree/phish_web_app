@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('music/', include('music.urls')), #used to reach the spotify end point
     path('', include('pages.urls')),
 ]
