@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
 from .models import Image
-from .forms import ImageForm
+from .forms import *
 import random
 
 
@@ -8,20 +9,22 @@ def showimage(request):
     t= Image.objects.last()
     num = t.id
     tootles  = random.randint(0,num)
-    lastimage= Image.objects.get(id=tootles)
+    displayimage= Image.objects.get(id=tootles)
 
-    imagefile= lastimage.imagefile
-
-
-    form= ImageForm(request.POST or None, request.FILES or None)
-    if form.is_valid():
-        form.save()
-
+    imagefile= displayimage.imagefile
+    if request.method == 'GET':
+            return render((request, 'html', imagefile))
+    if request.method =='POST':
+        form= ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('success')
+    else:
+        form = ImageForm()
+    return render(request, '.html', {'form' : form})    
     
-    context= {'imagefile': imagefile
-              }
     
-      
-    return render(request, 'home.html', context)
+def success(request):  
+    return HttpResponse('successfully uploaded')
 
 # Create your views here.
