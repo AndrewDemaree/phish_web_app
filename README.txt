@@ -1,6 +1,8 @@
 # phish_web_app
 
 need to install:
+(pip install -r requirements.txt) to install all
+
   venv (python -m venv .venv)
   django (python -m pip install django~=4.0.0)
   pillow (pip install pillow)
