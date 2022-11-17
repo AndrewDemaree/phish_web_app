@@ -3,7 +3,11 @@
 {% block title %}Home{% endblock title %}
 {% block content %}
 {% if user.is_authenticated %}
-Hi {{ user.username }}! How are you today?
+<p>Hi {{ user.username }}!</p>
+<p>How are you today?</p>
+{% for image in imagefile %}
+<img src="{{ imagefile.imagefile.url }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" />
+{% endfor %}
 {% else %}
 <p>You are not logged in</p>
 {% endif %}
