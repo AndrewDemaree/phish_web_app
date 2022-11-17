@@ -57,7 +57,30 @@ mb-md-0">
                                 </div>
                                 {% endif %}
                             </div>
+<<<<<<< HEAD
                         </nav>
+=======
+                            <ul></ul>
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="/">Home</a></li>
+                            </ul>
+                            <ul></ul>
+                            <ul class ="nav navbar-nav">
+                                <li><a href="about/">About</a></li>
+                            </ul>
+                            <ul></ul>
+                            <ul></ul>
+                            <ul></ul>
+                            <ul></ul>
+                            <ul></ul>
+                            {% if user.is_authenticated %}
+                            <div>
+                                <button type="button" class="btn btn-primary active">Go Phish</button>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </nav>
+>>>>>>> e9c6c8a35475bc9d19136863753b1f8606485b78
 
                         {% if user.is_authenticated %}
                     </ul>
