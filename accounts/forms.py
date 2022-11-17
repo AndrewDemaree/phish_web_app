@@ -24,7 +24,7 @@ class CustomUserChangeForm(UserChangeForm):
     favorite_phish_song = forms.CharField(label = 'Favorite Phish Song')
     favorite_fish = forms.CharField(label = 'Favorite Fish')
     
-    class Meta:
+    class Meta(UserChangeForm):
         model = CustomUser
         fields = (
             'username',

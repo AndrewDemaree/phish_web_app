@@ -5,24 +5,24 @@ from .forms import *
 import random
 
 
-def showimage(request):
-    t= Image.objects.last()
-    num = t.id
-    tootles  = random.randint(0,num)
-    displayimage= Image.objects.get(id=tootles)
-
-    imagefile= displayimage.imagefile
-    if request.method == 'GET':
-            return render((request, 'html', imagefile))
+def takeimage(request):
     if request.method =='POST':
-        form= ImageForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
+        keg= ImageForm(request.POST, request.FILES)
+        if keg.is_valid():
+            keg.save()
             return redirect('success')
     else:
-        form = ImageForm()
-    return render(request, '.html', {'form' : form})    
-    
+        keg = ImageForm()
+    return render(request, 'submit.html', {'keg' : keg}) 
+       
+def showimage(request):   
+    if request.method == 'GET':
+        t= Image.objects.last()
+        num = t.id
+        tootles  = random.randint(0,num)
+        displayimage= Image.objects.get(id=tootles)
+        imagefile= displayimage.imagefile
+        return render((request, 'home.html', imagefile))    
     
 def success(request):  
     return HttpResponse('successfully uploaded')
