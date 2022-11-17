@@ -4,11 +4,16 @@
 {% block title %}Submit Photo{% endblock title %}
 {% block content %}
 {% if user.is_authenticated %}
-Hi {{ user.username }}! Please add a photo below and press submit!
+Hi {{ user.username }}! Please add your photo below and press submit!
 
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
+<<<<<<< HEAD:templates/submit.html
+    {{ keg.as_p }}
+    <button type="submit" class="btn btn-success">Submit</button>
+=======
     <button type="submit" class="btn btn-primary">Submit</button>
+>>>>>>> e9c6c8a35475bc9d19136863753b1f8606485b78:templates/submission/submit.html
 </form>
 
 {% if img_obj %}
