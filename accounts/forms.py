@@ -21,8 +21,9 @@ class CustomUserCreationForm(UserCreationForm):
 
 class CustomUserChangeForm(UserChangeForm):
     age = forms.IntegerField()
-    favorite_phish_song = forms.CharField(label = 'Favorite Phish Song')
-    favorite_fish = forms.CharField(label = 'Favorite Fish')
+    favorite_phish_song = forms.ChoiceField(choices = phish_choices, label = 'Favorite Phish Song')
+    favorite_fish = forms.ChoiceField(choices = fish_choices, label = 'Favorite Fish')
+
     
     class Meta(UserChangeForm):
         model = CustomUser

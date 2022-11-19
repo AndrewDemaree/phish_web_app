@@ -2,13 +2,19 @@
 {% extends "base.html" %}
 {% block title %}About{% endblock title %}
 {% block content %}
+Welcome to Something Fishy!
+<br><br>
 {% if user.is_authenticated %}
 Hi {{ user.username }}!
+<br><br>
+You will need to authenticate your spotify account to take advantage of the music portion!
+<div>
+    <a class="btn btn-primary" href="#" role="button">Authenticate Spotify Button</a>
+</div>
 {% else %}
 <p>You are not logged in</p>
 {% endif %}
-<br><br><br>
-Welcome to Something Fishy!
+
 
 
 
