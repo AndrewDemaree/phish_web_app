@@ -30,6 +30,5 @@ fish_choices = (
 
 class CustomUser(AbstractUser):
     age = models.PositiveIntegerField(null=True, blank=True)
-    favorite_phish_song = models.IntegerField(
-        choices = phish_choices, default = '1')
+    favorite_phish_song = models.TextField(null=True, blank=True)
     favorite_fish = models.TextField(null=True, blank=True)
