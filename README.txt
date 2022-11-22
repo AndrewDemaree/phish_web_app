@@ -1,12 +1,9 @@
 # phish_web_app
 
-need to install:
-(pip install -r requirements.txt) to install all
+(pip install -r requirements.txt) to install all requirements on Windows
 
-  venv (python -m venv .venv)
-  django (python -m pip install django~=4.0.0)
-  pillow (pip install pillow)
-  environs (pip install environs)
-  crispyforms (python -m pip install django-crispy-forms==1.13.)
-  crispyforms bootstrap5 (python -m pip install crispy-bootstrap5==0.6)
-  rest_frameworks (pip install djangorestframework)
+
+Credit for CSS and HTML styling for login, signup, and all password reset and change forms goes to:
+	"Login Form Validation in JavaScritp by Dinesh" 
+	found on: https://ordinarycoders.com/blog/article/custom-user-login-forms
+	The JavaScript portion was not used in this application.
