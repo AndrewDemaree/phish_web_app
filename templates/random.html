@@ -4,9 +4,13 @@
 {% block title %}Go Phish Random Image{% endblock title %}
 {% block content %}
 {% if user.is_authenticated %}
-Hi {{ user.username }}!
+<p>Hi {{ user.username }}!</p>
 <br>
-Need to incorporate random images and music functionality. 
+<p>Need to incorporate random images and music functionality.</p>
+<p>{{ imagefile.name }}</p>
+<img src="{{ imagefile.url }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" />
+</div>
+
 <br><br>
 <div>
     <a class="btn btn-primary" href="#" role="button">Authenticate Spotify Button</a>
