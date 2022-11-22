@@ -6,4 +6,8 @@
 Credit for CSS and HTML styling for login, signup, and all password reset and change forms goes to:
 	"Login Form Validation in JavaScritp by Dinesh" 
 	found on: https://ordinarycoders.com/blog/article/custom-user-login-forms
+<<<<<<< HEAD
 	The JavaScript portion was not used in this application.
+=======
+	The JavaScript portion was not used in this application.
+>>>>>>> 8ee4e106c881bc64939c595264917b3a4c935172

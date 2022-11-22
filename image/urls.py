@@ -6,7 +6,6 @@ from .views import *
   
 urlpatterns = [
     path('image_upload', takeimage, name = 'image_upload'),
-    path('success', success, name = 'success'),
     path('image', showimage, name = 'chosen_image'),
 ]
   

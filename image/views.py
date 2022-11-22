@@ -10,7 +10,7 @@ def takeimage(request):
         keg= ImageForm(request.POST, request.FILES)
         if keg.is_valid():
             keg.save()
-            return redirect('success')
+            return redirect('home')
     else:
         keg = ImageForm()
     return render(request, 'submit.html', {'keg' : keg}) 
@@ -26,5 +26,7 @@ def showimage(request):
     
 def success(request):  
     return HttpResponse('successfully uploaded')
+
+
 
 # Create your views here.
