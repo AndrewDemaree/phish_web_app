@@ -19,14 +19,10 @@ def showimage(request):
     if request.method == 'GET':
         t= Image.objects.last()
         num = t.id
-        tootles  = random.randint(1,num)
+        tootles  = random.randint(0,num)
         displayimage= Image.objects.get(id=tootles)
         imagefile= displayimage.imagefile
-        return render(request, 'random.html', {'imagefile':imagefile})    
+        return render((request, 'home.html', imagefile))    
     
-def success(request):  
-    return HttpResponse('successfully uploaded')
-
-
 
 # Create your views here.

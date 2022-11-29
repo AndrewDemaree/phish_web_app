@@ -1,4 +1,15 @@
 <!-- templates/random.html -->
+
+
+<style>
+
+.button {
+    background-color: green;
+    border-radius: 2px;
+    margin-left: 50px;
+    }
+
+</style>
 {% extends "base.html" %}
 
 {% block title %}Go Phish Random Image{% endblock title %}
@@ -11,17 +22,14 @@
 <img src="{{ imagefile.url }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" />
 </div>
 
-<br><br>
-<div>
-    <a class="btn btn-primary" href="#" role="button">Authenticate Spotify Button</a>
+<br><br><br>
+<div class="text-center">
+    <a class="btn btn-success" role="button" href="{% url "social:begin" "spotify" %}">Authenticate Spotify</a>
 </div>
 
 
 {% else %}
 <p>You are not logged in</p>
 {% endif %}
-<br><br><br>
-
-
 
 {% endblock content %}
