@@ -4,13 +4,16 @@
 {% block content %}
 Welcome to Something Fishy!
 <br><br>
+
 {% if user.is_authenticated %}
 Hi {{ user.username }}!
 <br><br>
 You will need to authenticate your spotify account to take advantage of the music portion!
-<div>
-    <a class="btn btn-primary" href="#" role="button">Authenticate Spotify Button</a>
+<br><br><br>
+<div class="text-center">
+    <a class="btn btn-success" role="button" href="{% url "social:begin" "spotify" %}">Authenticate Spotify</a>
 </div>
+
 {% else %}
 <p>You are not logged in</p>
 {% endif %}

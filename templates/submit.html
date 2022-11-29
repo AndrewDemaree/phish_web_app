@@ -4,7 +4,9 @@
 {% block title %}Submit Photo{% endblock title %}
 {% block content %}
 {% if user.is_authenticated %}
-Hi {{ user.username }}! Please add your photo below and press submit!
+Hi {{ user.username }}!
+<br>
+Please add your photo below and press submit!
 
 <form method="post" enctype="multipart/form-data">
     {% csrf_token %}
