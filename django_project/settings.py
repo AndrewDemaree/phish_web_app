@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     #3rd Party
     'crispy_forms',
     'crispy_bootstrap5',
+    #spotify authentication
+    'social_django',
     #Local
     'music.apps.MusicConfig',
     'accounts.apps.AccountsConfig',
@@ -93,6 +95,12 @@ DATABASES = {
     }
 }
 
+# Backends
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.spotify.SpotifyOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -148,3 +156,11 @@ MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
 MEDIA_URL= "/media/"
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+
+#Spotify Authentication
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+SOCIAL_AUTH_SPOTIFY_KEY = '3df8e989f8e749129fbf3d503778c7ec'
+SOCIAL_AUTH_SPOTIFY_SECRET = '342da1c180004925a450b6f04c18d229'
+REDIRECT_URI= 'http://127.0.0.1:8000/social/complete/spotify/'
