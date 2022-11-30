@@ -23,6 +23,5 @@ def showimage(request):
         displayimage= Image.objects.get(id=tootles)
         imagefile= displayimage.imagefile
         return render((request, 'home.html', imagefile))    
-    
 
 # Create your views here.

@@ -1,6 +1,5 @@
 <!-- templates/random.html -->
 
-
 <style>
 
 .button {
@@ -12,6 +11,7 @@
 </style>
 {% extends "base.html" %}
 
+
 {% block title %}Go Phish Random Image{% endblock title %}
 {% block content %}
 {% if user.is_authenticated %}
@@ -19,14 +19,12 @@
 <br>
 <p>Need to incorporate random images and music functionality.</p>
 <p>{{ imagefile.name }}</p>
-<img src="{{ imagefile.url }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" />
+{% load random_image %}
+<img src="{{ MEDIA_ROOT }}{% random_image %}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" />
+
 </div>
 
 <br><br><br>
-<div class="text-center">
-    <a class="btn btn-success" role="button" href="{% url "social:begin" "spotify" %}">Authenticate Spotify</a>
-</div>
-
 
 {% else %}
 <p>You are not logged in</p>
