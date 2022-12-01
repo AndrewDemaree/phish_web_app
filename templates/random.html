@@ -1,5 +1,5 @@
 <!-- templates/random.html -->
-
+<body>
 <style>
 
 .button {
@@ -12,17 +12,34 @@
 {% extends "base.html" %}
 
 
+<script src="https://open.spotify.com/embed-podcast/iframe-api/v1" async></script>
+<script>
+window.onSpotifyIframeApiReady = (IFrameAPI) => {
+  let element = document.getElementById('embed-iframe');
+  let options = {
+      uri: 'spotify:episode:7makk4oTQel546B0PZlDM5'
+    };
+  let callback = (EmbedController) => {};
+  IFrameAPI.createController(element, options, callback);
+};
+    </script>
+
+</body>
 {% block title %}Go Phish Random Image{% endblock title %}
 {% block content %}
 {% if user.is_authenticated %}
 <p>Hi {{ user.username }}!</p>
 <br>
-<p>Need to incorporate random images and music functionality.</p>
+
 <p>{{ imagefile.name }}</p>
 {% load random_image %}
 <img src="{{ MEDIA_ROOT }}{% random_image %}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" />
+<br><br>
 
-</div>
+<p>Need to incorporate music functionality.</p>
+
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO3fq5Og?utm_source=generator" width="75%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+
 
 <br><br><br>
 

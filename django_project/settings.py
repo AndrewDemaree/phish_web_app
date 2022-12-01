@@ -158,6 +158,7 @@ MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
 MEDIA_URL= '/media/'
 
 RANDOM_IMAGE_DIR = (os.path.join(BASE_DIR, 'static/media/images'))
+RANDOM_IMAGE_EXTENSIONS = ['.jpg', '.png', '.jpeg', '.jfif', '.gif',]
 
 STATIC_ROOT = 'staticfiles'
 STATIC_URL = '/static/'
