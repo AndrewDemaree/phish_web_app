@@ -1,0 +1,15 @@
+<!-- templates/submit.html -->
+{% extends "base.html" %}
+
+{% block title %}Submit Photo Successful{% endblock title %}
+{% block content %}
+{% if user.is_authenticated %}
+Thank you for your photo submission!
+<br>
+
+{% else %}
+<p>You are not logged in</p>
+{% endif %}
+<br><br><br>
+
+{% endblock content %}
