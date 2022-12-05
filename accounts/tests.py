@@ -11,7 +11,7 @@ class SignupPageTests(TestCase):
         self.assertEqual(response.status_code, 200)
         
     def test_signup_view_name(self):
-        response = self.client.get(reverse('signup/'))
+        response = self.client.get(reverse('signup'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'registration/signup.html')
         
@@ -23,6 +23,9 @@ class SignupPageTests(TestCase):
                 'email': 'testuser@email.com',
                 'password1': 'testpassword123',
                 'password2': 'testpassword123',
+                'age': '3',
+                'favorite_phish_song': '3',
+                'favorite_fish': '4',
                 },
             )
 
@@ -30,4 +33,6 @@ class SignupPageTests(TestCase):
         self.assertEqual(get_user_model().objects.all().count(), 1)
         self.assertEqual(get_user_model().objects.all()[0].username, 'testuser')
         self.assertEqual(get_user_model().objects.all()[0].email, 'testuser@email.com')
-    
+        self.assertEqual(get_user_model().objects.all()[0].favorite_phish_song, '3')
+        self.assertNotEqual(get_user_model().objects.all()[0].favorite_fish, '6')
+        
