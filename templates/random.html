@@ -2,29 +2,44 @@
 
 
 <style>
-
-.button {
-    background-color: green;
-    border-radius: 2px;
-    margin-left: 50px;
+    .button {
+        background-color: green;
+        border-radius: 2px;
+        margin-left: 50px;
     }
-
 </style>
 {% extends "base.html" %}
-
+{% load crispy_forms_tags %}
 {% block title %}Go Phish Random Image{% endblock title %}
 {% block content %}
 {% if user.is_authenticated %}
 <p>Hi {{ user.username }}!</p>
 <br>
 <p>Need to incorporate random images and music functionality.</p>
-<p>{{ imagefile.name }}</p>
-<img src="{{ imagefile.url }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" />
+<div>
+    <p>{{ imagefile.name }}</p>
+    <img src="{{ MEDIA_ROOT }}{{ imagefile.url }}" class="img-responsive"
+        style="width: 100%; float: left; margin-right: 10px;" />
+</div>
+<div>
+    <h4>Comments</h4>
+    {% for comment in imagefile.comment_set.all %}
+    <p>{{comment.author}} &middot; {{comment}}</p>
+    {% endfor %}
+</div>
+
+<hr>
+<div>
+    <h4>Add a comment</h4>
+    <form action="" method="post"> {% csrf_token %}
+        {{ form|crispy }}
+        <button class="btn btn-success ml-2" type="submit">Save</button>
+    </form>
 </div>
 
 <br><br><br>
 <div class="text-center">
-    <a class="btn btn-success" role="button" href="{% url "social:begin" "spotify" %}">Authenticate Spotify</a>
+    <a class="btn btn-success" role="button" href="{% url 'social:begin' 'spotify' %}">Authenticate Spotify</a>
 </div>
 
 
