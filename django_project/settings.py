@@ -46,6 +46,8 @@ INSTALLED_APPS = [
     'crispy_bootstrap5',
     #spotify authentication
     'social_django',
+    #random image
+    'random_image_from_folder',
     #Local
     'music.apps.MusicConfig',
     'accounts.apps.AccountsConfig',
@@ -68,7 +70,7 @@ ROOT_URLCONF = 'django_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [BASE_DIR / 'templates',],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -152,8 +154,20 @@ LOGOUT_REDIRECT_URL = 'home'
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
-MEDIA_ROOT= os.path.join(BASE_DIR, 'media/')
-MEDIA_URL= "/media/"
+MEDIA_ROOT= os.path.join(BASE_DIR, 'static/media/')
+MEDIA_URL= '/media/'
+
+RANDOM_IMAGE_DIR = (os.path.join(BASE_DIR, 'static/media/images'))
+RANDOM_IMAGE_EXTENSIONS = ['.jpg', '.JPG', '.png', '.PNG', '.jpeg', '.JPEG', '.jfif', '.JFIF', '.gif', '.GIF', '.pjpeg', '.PJPEG', '.pjp', '.PJP', '.svg', '.SVG', '.webp', '.WEBP']
+
+STATIC_ROOT = 'staticfiles'
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+RANDOM_IMAGES = '%s/fallback_images/' % MEDIA_ROOT
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 

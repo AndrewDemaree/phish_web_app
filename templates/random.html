@@ -1,6 +1,5 @@
 <!-- templates/random.html -->
-
-
+<body>
 <style>
     .button {
         background-color: green;
@@ -9,12 +8,58 @@
     }
 </style>
 {% extends "base.html" %}
+<<<<<<< HEAD
 {% load crispy_forms_tags %}
+=======
+
+<script src="https://sdk.scdn.co/spotify-player.js"></script>
+<script>
+    window.onSpotifyWebPlaybackSDKReady = () => {
+        const token = '[BQBodavNm54ttjqsujdkknzfMAclzefCwdHYhoiKfOfHNTu0wdcw3-s7Nbsa5qdqN-8h8CcvTx3dwTW8v-hOpsquaSIdu9vcxHG9dd7-bXRkRmgFkwDT2I78zMdCxDOskpJkrRiUm51Lf4AlODCkYI3pV6RmreIUyH1IStwuzeI01eo-WCuaiw3z5_Eo6KNLRVgjSWKrxUEv_IVehAnlhl0]';
+        const player = new Spotify.Player({
+        name: 'Web Playback SDK Quick Start Player',
+        getOAuthToken: cb => { cb(token); },
+        volume: 0.5
+    });
+
+      // Ready
+  player.addListener('ready', ({ device_id }) => {
+    console.log('Ready with Device ID', device_id);
+  });
+
+  // Not Ready
+  player.addListener('not_ready', ({ device_id }) => {
+    console.log('Device ID has gone offline', device_id);
+  });
+
+    player.addListener('initialization_error', ({ message }) => {
+      console.error(message);
+  });
+
+  player.addListener('authentication_error', ({ message }) => {
+      console.error(message);
+  });
+
+  player.addListener('account_error', ({ message }) => {
+      console.error(message);
+  });
+
+   player.connect();
+
+   document.getElementById('togglePlay').onclick = function() {
+  player.togglePlay();
+};
+</script>
+
+
+</body>
+>>>>>>> ee1bfd8fa86c4311ce7f0076745979f4355e77bc
 {% block title %}Go Phish Random Image{% endblock title %}
 {% block content %}
 {% if user.is_authenticated %}
 <p>Hi {{ user.username }}!</p>
 <br>
+<<<<<<< HEAD
 <p>Need to incorporate random images and music functionality.</p>
 <div>
     <p>{{ imagefile.name }}</p>
@@ -42,6 +87,22 @@
     <a class="btn btn-success" role="button" href="{% url 'social:begin' 'spotify' %}">Authenticate Spotify</a>
 </div>
 
+=======
+
+<p>{{ imagefile.name }}</p>
+{% load random_image %}
+<img src="{{ MEDIA_ROOT }}{% random_image %}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" />
+<br><br>
+
+<p>Need to incorporate music functionality.</p>
+
+<div id="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO3fq5Og?utm_source=generator"></div>
+
+<br>
+<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO3fq5Og?utm_source=generator" width="75%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+
+<br><br><br>
+>>>>>>> ee1bfd8fa86c4311ce7f0076745979f4355e77bc
 
 {% else %}
 <p>You are not logged in</p>
