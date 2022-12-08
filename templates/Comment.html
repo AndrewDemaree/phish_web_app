@@ -2,16 +2,16 @@
 {% block content %}
 {% if user.is_authenticated %}
 <h2>Chat</h2>
-<a class="btn btn-primary" href="new/" role="button">Say Hi!</a>
+<br>
+<a class="btn btn-primary" href="new/" role="button">Add Message</a>
+<br><br>
 {% for comment in comment_list %}
-
 <div>
     <p> {{comment.author}}
         &middot;
         {{ comment.comment }}
-        {% if user == comment.author %} <a class="btn btn-primary" href="{% url 'comment_edit' comment.pk %}"
-            role="button">Edit</a> | <a class="btn btn-primary" href="{% url 'comment_delete' comment.pk %}"
-            role="button">Delete</a>
+        {% if user == comment.author %} <a href="{% url 'comment_edit' comment.pk %}">Edit</a> | <a
+            href="{% url 'comment_delete' comment.pk %}">Delete</a>
         {% endif %}</p>
 </div>
 {% endfor %}
