@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 {% if user.is_authenticated %}
+{% if user == comment.author %}
 <div>
     <form action="" method="post"> {% csrf_token %}
         {{ form|crispy }}
@@ -9,7 +10,7 @@
     </form>
 </div>
 <a class="btn btn-primary" href="{% url 'comment'%}" role="button">Nevermind</a>
-
+{% endif %}
 {% else %}
 <p>You are not logged in</p>
 {% endif %}

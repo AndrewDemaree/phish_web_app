@@ -3,10 +3,11 @@
 {% if user.is_authenticated %}
 <h2>Message Added!</h2>
 <p>{{object.author}} &middot; {{object.comment}}</p>
-
+{% if user == comment.author %}
 <a href="{% url 'comment_edit' comment.pk %}">-Edit Message-</a> | <a
     href="{% url 'comment_delete' comment.pk %}">-Delete Message-</a> |
 <a href="{% url 'comment' %}">See Messages</a>
+{% endif %}
 {% else %}
 <p>You are not logged in</p>
 {% endif %}
