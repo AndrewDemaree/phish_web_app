@@ -9,7 +9,3 @@ class AboutPageView(TemplateView):
 
 class RandomPageView(TemplateView):
     template_name = 'random.html'
-
-class SuccessPageView(TemplateView):
-    template_name = 'submitsuccess.html'
-

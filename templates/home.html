@@ -1,14 +1,36 @@
 <!-- templates/home.html -->
 {% extends "base.html" %}
 {% block title %}Home{% endblock title %}
+
 {% block content %}
+<style>
+    .center {
+            margin: auto;
+            text-align: center;
+            width: 100%;
+            padding: 10px;
+            }
+</style>
+
+<div class="center">
+    <h3>Welcome to Something Fishy!</h3>
+</div>
+
+
 {% if user.is_authenticated %}
 <p>Hi {{ user.username }}!</p>
 <p>How are you today?</p>
-{% for image in imagefile %}
-<img src="{{ imagefile.imagefile.url }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" />
-{% endfor %}
+
 {% else %}
 <p>You are not logged in</p>
 {% endif %}
+
+<div class="center">
+    <p>Have any questions or comments for the developers?</p>
+</div>
+<br>
+<div class="text-center">
+    <a class="btn btn-success" role="button" href="https://www.youtube.com/watch?v=xm3YgoEiEDc">Email Us!</a>
+</div>
+
 {% endblock content %}
