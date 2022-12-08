@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
-from django.views.generic import DetailView, FormView
-from django.views.generic.edit import CreateView
+from django.views.generic import DetailView, FormView, ListView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic.detail import SingleObjectMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
@@ -13,7 +13,6 @@ class ImageSubmitView(LoginRequiredMixin, DetailView):
     model = Image
     template_name= "random.html"
 
-<<<<<<< HEAD
     def takeimage(request):
         if request.method =='POST':
             keg= ImageForm(request.POST, request.FILES)
@@ -25,7 +24,7 @@ class ImageSubmitView(LoginRequiredMixin, DetailView):
         return render(request, 'submit.html', {'keg' : keg}) 
 
 
-class ImageDetailView(LoginRequiredMixin, CreateView):
+class ImageDetailView(LoginRequiredMixin, DetailView):
     model = Image
     template_name= "submit.html"
     def showimage(request):   
@@ -37,31 +36,31 @@ class ImageDetailView(LoginRequiredMixin, CreateView):
             imagefile= displayimage.imagefile
             return render((request, 'home.html', imagefile))
 
-class CommentGet(DetailView):
-    model = Image
-    template_name= "random.html"
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['form'] = CommentForm()
-        return context    
+class CommentGet(ListView):
+    model = Comment
+    template_name= "Comment.html"
 
-class CommentPost(FormView,SingleObjectMixin):
-    model=Image
-    template_name= "random.html"
-    def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        return super().post(request, *args, **kwargs)
-    def form_valid(self, form):
-        comment = form.save(commit=False)
-        comment.image = self.object
-        comment.save()
-        return super().form_valid(form)
-    def get_success_url(self):
-        image = self.get_object()
-        return reverse("random", kwargs={"pk": image.pk})
+class CommentUpdateView(UpdateView):
+    model = Comment
+    form_class= CommentForm
+    template_name= "Comment_edit.html"
 
+
+class CommentDetailView(DetailView):
+    model= Comment
+    template_name="Chat_detail.html"
+
+class CommentCreateView(CreateView,SingleObjectMixin):
+    model=Comment
+    form_class= CommentForm
+    template_name= "Chat_create.html"
+
+class CommentDeleteView(DeleteView, SingleObjectMixin):
+    model=Comment
+    template_name= 'Chat_delete.html'
+    success_url = reverse_lazy("comment")
+    
 # Create your views here.
-=======
 def takeimage(request):
     if request.method =='POST':
         keg= ImageForm(request.POST, request.FILES)
@@ -80,4 +79,3 @@ def showimage(request):
         displayimage= Image.objects.get(id=tootles)
         imagefile= displayimage.imagefile
         return render((request, 'home.html', imagefile))    
->>>>>>> ee1bfd8fa86c4311ce7f0076745979f4355e77bc

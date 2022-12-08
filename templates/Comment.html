@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+{% if user.is_authenticated %}
+<h2>Chat</h2>
+<a class="btn btn-primary" href="new/" role="button">Say Hi!</a>
+{% for comment in comment_list %}
+
+<div>
+    <p> {{comment.author}}
+        &middot;
+        {{ comment.comment }}
+        {% if user == comment.author %} <a class="btn btn-primary" href="{% url 'comment_edit' comment.pk %}"
+            role="button">Edit</a> | <a class="btn btn-primary" href="{% url 'comment_delete' comment.pk %}"
+            role="button">Delete</a>
+        {% endif %}</p>
+</div>
+{% endfor %}
+{% else %}
+<p>You are not logged in</p>
+{% endif %}
+{% endblock content %}

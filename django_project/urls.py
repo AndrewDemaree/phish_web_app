@@ -25,7 +25,7 @@ urlpatterns = [
     path('accounts/', include('django.contrib.auth.urls')),
     path('music/', include('music.urls')), #used to reach the spotify end point
     path('', include('pages.urls')),
-    path('submit/', include ('image.urls')),
+    path('', include('image.urls')),
     path('social/', include('social_django.urls')),#for spotify authentication
 ]+ static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
 
