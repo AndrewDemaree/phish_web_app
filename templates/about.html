@@ -2,25 +2,55 @@
 {% extends "base.html" %}
 {% block title %}About{% endblock title %}
 {% block content %}
-Welcome to Something Fishy!
-<br><br>
+
+<style>
+    .center {
+            margin: auto;
+            text-align: center;
+            width: 100%;
+            padding: 10px;
+     }
+</style>
+
+<div class="center">
+    <h3>Welcome to Something Fishy!</h3>
+</div>
+
 
 {% if user.is_authenticated %}
 Hi {{ user.username }}!
-<br><br>
-DETAIL SUPPORTED IMAGE FILE TYPES
-<br><br>
-You will need to authenticate your spotify account to take advantage of the music portion!
-<br><br><br>
-<div class="text-center">
-    <a class="btn btn-success" role="button" href="{% url "social:begin" "spotify" %}">Authenticate Spotify</a>
-</div>
 
 {% else %}
 <p>You are not logged in</p>
 {% endif %}
 
+<br><br>
+<div>
+    <p>This is a website created by Paige Johnson, Andrew Demaree, and Brianna Daniels.</p>
+    <p>The intent of this app is to share photos of fish, enjoy Fish music, and be able to chat with fellow Phis-fish enthusiasts</p>
+    <br>
+    <p>In this app, you can upload images via a dropdown menu once logged in.</p>
+    <p>Be careful as there is no way to delete a submitted image!</p>
+    <p>To view images, click the Go Phish button which shows after user creation!</p>
+    <p>Supported image types are:</p>
+    <ul>
+        <li>JPG</li>
+        <li>JPEG</li>
+        <li>PNG</li>
+        <li>JFIF</li>
+        <li>PJEG</li>
+        <li>PJP</li>
+        <li>SVG</li>
+        <li>WEBP</li>
+    </ul>
+    <br>
+    <p>The chat room can be accessed via the drop down menu as well!</p>
+    <br>
+    <p>You will need to authenticate your spotify account to take advantage of the music portion!</p>
+</div>
 
-
-
+<div class="text-center">
+    <a class="btn btn-success" role="button" href="{% url "social:begin" "spotify" %}">Authenticate Spotify</a>
+</div>
+<br><br>
 {% endblock content %}
