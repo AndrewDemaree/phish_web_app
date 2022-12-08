@@ -1,54 +1,55 @@
 <!-- templates/random.html -->
-<body>
-<style>
-
-.button {
-    background-color: green;
-    border-radius: 2px;
-    margin-left: 50px;
-    }
-
-</style>
 {% extends "base.html" %}
 
-<script src="https://sdk.scdn.co/spotify-player.js"></script>
-<script>
-    window.onSpotifyWebPlaybackSDKReady = () => {
-        const token = '[BQBodavNm54ttjqsujdkknzfMAclzefCwdHYhoiKfOfHNTu0wdcw3-s7Nbsa5qdqN-8h8CcvTx3dwTW8v-hOpsquaSIdu9vcxHG9dd7-bXRkRmgFkwDT2I78zMdCxDOskpJkrRiUm51Lf4AlODCkYI3pV6RmreIUyH1IStwuzeI01eo-WCuaiw3z5_Eo6KNLRVgjSWKrxUEv_IVehAnlhl0]';
-        const player = new Spotify.Player({
-        name: 'Web Playback SDK Quick Start Player',
-        getOAuthToken: cb => { cb(token); },
-        volume: 0.5
-    });
+<body>
+    <style>
+        .button {
+            background-color: green;
+            border-radius: 2px;
+            margin-left: 50px;
+        }
+    </style>
 
-      // Ready
-  player.addListener('ready', ({ device_id }) => {
-    console.log('Ready with Device ID', device_id);
-  });
 
-  // Not Ready
-  player.addListener('not_ready', ({ device_id }) => {
-    console.log('Device ID has gone offline', device_id);
-  });
+    <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <script>
+        window.onSpotifyWebPlaybackSDKReady = () => {
+            const token = '[BQBodavNm54ttjqsujdkknzfMAclzefCwdHYhoiKfOfHNTu0wdcw3-s7Nbsa5qdqN-8h8CcvTx3dwTW8v-hOpsquaSIdu9vcxHG9dd7-bXRkRmgFkwDT2I78zMdCxDOskpJkrRiUm51Lf4AlODCkYI3pV6RmreIUyH1IStwuzeI01eo-WCuaiw3z5_Eo6KNLRVgjSWKrxUEv_IVehAnlhl0]';
+            const player = new Spotify.Player({
+                name: 'Web Playback SDK Quick Start Player',
+                getOAuthToken: cb => { cb(token); },
+                volume: 0.5
+            });
 
-    player.addListener('initialization_error', ({ message }) => {
-      console.error(message);
-  });
+            // Ready
+            player.addListener('ready', ({ device_id }) => {
+                console.log('Ready with Device ID', device_id);
+            });
 
-  player.addListener('authentication_error', ({ message }) => {
-      console.error(message);
-  });
+            // Not Ready
+            player.addListener('not_ready', ({ device_id }) => {
+                console.log('Device ID has gone offline', device_id);
+            });
 
-  player.addListener('account_error', ({ message }) => {
-      console.error(message);
-  });
+            player.addListener('initialization_error', ({ message }) => {
+                console.error(message);
+            });
 
-   player.connect();
+            player.addListener('authentication_error', ({ message }) => {
+                console.error(message);
+            });
 
-   document.getElementById('togglePlay').onclick = function() {
-  player.togglePlay();
-};
-</script>
+            player.addListener('account_error', ({ message }) => {
+                console.error(message);
+            });
+
+            player.connect();
+
+            document.getElementById('togglePlay').onclick = function () {
+                player.togglePlay();
+            };
+        }
+    </script>
 
 
 </body>
@@ -60,7 +61,8 @@
 
 <p>{{ imagefile.name }}</p>
 {% load random_image %}
-<img src="{{ MEDIA_ROOT }}{% random_image %}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" />
+<img src="{{ MEDIA_ROOT }}{% random_image %}" class="img-responsive"
+    style="width: 100%; float: left; margin-right: 10px;" />
 <br><br>
 
 <p>Need to incorporate music functionality.</p>
@@ -68,7 +70,10 @@
 <div id="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO3fq5Og?utm_source=generator"></div>
 
 <br>
-<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO3fq5Og?utm_source=generator" width="75%" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+<iframe style="border-radius:12px"
+    src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO3fq5Og?utm_source=generator" width="75%" height="80"
+    frameBorder="0" allowfullscreen=""
+    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
 
 <br><br><br>
 
