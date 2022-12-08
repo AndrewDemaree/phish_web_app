@@ -13,3 +13,10 @@ Credit for CSS and HTML styling for login, signup, and all password reset and ch
 	found on: https://ordinarycoders.com/blog/article/custom-user-login-forms
 	The JavaScript portion was not used in this application.
 
+
+3rd party apps used:
+django-random-image-from-folder
+crispy_forms
+crispy_bootstrap5
+social_django
+
