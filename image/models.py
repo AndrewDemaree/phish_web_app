@@ -16,8 +16,7 @@ class Image(models.Model):
 # Create your models here.
 
 class Comment(models.Model):
-    image = models.ForeignKey(Image, on_delete=models.CASCADE)
-    comment = models.CharField(max_length=140)
+    comment = models.CharField(max_length=180)
     author = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -25,7 +24,8 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.comment
-
+    def author_grabsie(self):
+        return self.author
     def get_absolute_url(self):
-        return reverse("image_list")
+        return reverse("comment_detail", kwargs={"pk": self.pk})
 
