@@ -2,12 +2,14 @@
 {% block content %}
 {% if user.is_authenticated %}
 <h2> Delete? </h2>
+{% if user == comment.author %}
 <form action="" method="post"> {% csrf_token %}
     <p>would you like to delete this Message?</p>
     <p>'{{comment.author}} &middot; {{comment.comment}}'</p>
     <input type="submit" value="Yes">
 </form>
 <a class="btn btn-primary" href="{% url 'comment'%}" role="button">Nevermind</a>
+{% endif %}
 {% else %}
 <p>You are not logged in</p>
 {% endif %}
