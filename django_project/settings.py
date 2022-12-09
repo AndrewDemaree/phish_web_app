@@ -24,12 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-f2!_gq5+%kvm+(u+xv595^1k0i5jpbl6q-$uhf#dd*zw1ix02-'
+SECRET_KEY = env.str("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG")
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = [".herokuapp.com", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -169,7 +169,14 @@ STATICFILES_DIRS = (
 
 RANDOM_IMAGES = '%s/fallback_images/' % MEDIA_ROOT
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+#Email
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+DEFAULT_FROM_EMAIL = "brianna.kadee@gmail.com"
+EMAIL_HOST = "smtp.sendgrid.net"
+EMAIL_HOST_USER = "apikey"
+EMAIL_HOST_PASSWORD = "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"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 
 #Spotify Authentication
@@ -178,3 +185,4 @@ SOCIAL_AUTH_URL_NAMESPACE = 'social'
 SOCIAL_AUTH_SPOTIFY_KEY = '3df8e989f8e749129fbf3d503778c7ec'
 SOCIAL_AUTH_SPOTIFY_SECRET = '342da1c180004925a450b6f04c18d229'
 REDIRECT_URI= 'http://127.0.0.1:8000/social/complete/spotify/'
+
