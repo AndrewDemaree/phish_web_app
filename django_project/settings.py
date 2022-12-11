@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     #3rd Party
     'crispy_forms',
@@ -58,6 +59,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -91,10 +93,7 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': env.dj_db_url("DATABASE_URL")
 }
 
 # Backends
@@ -160,9 +159,9 @@ MEDIA_URL= '/media/'
 RANDOM_IMAGE_DIR = (os.path.join(BASE_DIR, 'static/media/images'))
 RANDOM_IMAGE_EXTENSIONS = ['.jpg', '.JPG', '.png', '.PNG', '.jpeg', '.JPEG', '.jfif', '.JFIF', '.gif', '.GIF', '.pjpeg', '.PJPEG', '.pjp', '.PJP', '.svg', '.SVG', '.webp', '.WEBP']
 
-STATIC_ROOT = 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = '/static/'
-
+STATICFILES_STORAGE ="whitenoise.storage.CompressedManifestStaticFilesStorage"
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
