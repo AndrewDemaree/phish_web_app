@@ -1,7 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
+
+<style>
+    .center {
+            margin: auto;
+            text-align: center;
+            width: 100%;
+            padding: 10px;
+            }
+</style>
+
 {% if user.is_authenticated %}
-<h2>Chat</h2>
+<div class="center">
+    <h2>Chat</h2>
+</div>
 <br>
 <a class="btn btn-primary" href="new/" role="button">Add Message</a>
 <br><br>

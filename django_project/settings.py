@@ -24,12 +24,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-f2!_gq5+%kvm+(u+xv595^1k0i5jpbl6q-$uhf#dd*zw1ix02-'
+SECRET_KEY = env.str("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DEBUG")
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+ALLOWED_HOSTS = [".herokuapp.com", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
     #3rd Party
     'crispy_forms',
@@ -58,6 +59,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -91,10 +93,7 @@ WSGI_APPLICATION = 'django_project.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': env.dj_db_url("DATABASE_URL")
 }
 
 # Backends
@@ -160,21 +159,29 @@ MEDIA_URL= '/media/'
 RANDOM_IMAGE_DIR = (os.path.join(BASE_DIR, 'static/media/images'))
 RANDOM_IMAGE_EXTENSIONS = ['.jpg', '.JPG', '.png', '.PNG', '.jpeg', '.JPEG', '.jfif', '.JFIF', '.gif', '.GIF', '.pjpeg', '.PJPEG', '.pjp', '.PJP', '.svg', '.SVG', '.webp', '.WEBP']
 
-STATIC_ROOT = 'staticfiles'
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = '/static/'
-
+STATICFILES_STORAGE ="whitenoise.storage.CompressedManifestStaticFilesStorage"
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    (os.path.join(BASE_DIR, 'static')),
 )
 
 RANDOM_IMAGES = '%s/fallback_images/' % MEDIA_ROOT
 
-EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+#Email
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+DEFAULT_FROM_EMAIL = "brianna.kadee@gmail.com"
+EMAIL_HOST = "smtp.sendgrid.net"
+EMAIL_HOST_USER = "apikey"
+EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD")
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
 
 
 #Spotify Authentication
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
-SOCIAL_AUTH_SPOTIFY_KEY = '3df8e989f8e749129fbf3d503778c7ec'
-SOCIAL_AUTH_SPOTIFY_SECRET = '342da1c180004925a450b6f04c18d229'
-REDIRECT_URI= 'http://127.0.0.1:8000/social/complete/spotify/'
+SOCIAL_AUTH_SPOTIFY_KEY = env.str("CLIENT_ID")
+SOCIAL_AUTH_SPOTIFY_SECRET = env.str("CLIENT_SECRET")
+REDIRECT_URI= env.str("REDIRECT_URI")
+
