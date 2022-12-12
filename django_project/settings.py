@@ -156,14 +156,14 @@ CRISPY_TEMPLATE_PACK = 'bootstrap5'
 MEDIA_ROOT= os.path.join(BASE_DIR, 'static/media/')
 MEDIA_URL= '/media/'
 
-RANDOM_IMAGE_DIR = (os.path.join(BASE_DIR, 'staticfiles/media/images'))
+RANDOM_IMAGE_DIR = (os.path.join(BASE_DIR, 'static/media/images'))
 RANDOM_IMAGE_EXTENSIONS = ['.jpg', '.JPG', '.png', '.PNG', '.jpeg', '.JPEG', '.jfif', '.JFIF', '.gif', '.GIF', '.pjpeg', '.PJPEG', '.pjp', '.PJP', '.svg', '.SVG', '.webp', '.WEBP']
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATIC_URL = '/static/'
 STATICFILES_STORAGE ="whitenoise.storage.CompressedManifestStaticFilesStorage"
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
+    (os.path.join(BASE_DIR, 'static')),
 )
 
 RANDOM_IMAGES = '%s/fallback_images/' % MEDIA_ROOT
